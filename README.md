@@ -21,12 +21,47 @@ Enlace del Conjunto de Datos: [Conjunto de Datos de Solicitudes de Servicio 311 
 2. **Analizar Quejas por Distrito**
    - Calcula el número total de quejas para cada distrito.
    - Utiliza la cláusula `GROUP BY` para agrupar los datos por distrito.
+  
+   Code:
+   USE DATABASE ironhack_database;
+CREATE OR REPLACE SCHEMA ironhack_class;
 
-3. **Filtrar Tipos de Quejas de Alto Volumen**
+CREATE OR REPLACE STAGE my_stage;
+
+USE SCHEMA ironhack_database.ironhack_class;
+
+DESCRIBE TABLE complains
+
+
+-- Identificar los Principales Tipos de Quejas
+SELECT COMPLAINT_TYPE, COUNT(*) AS total_complaints
+FROM complains
+GROUP BY COMPLAINT_TYPE
+ORDER BY total_complaints DESC;
+
+
+-- Analizar Quejas por Distrito
+SELECT BOROUGH, COUNT(*) AS How_Many FROM complains
+GROUP BY BOROUGH
+ORDER BY How_Many DESC;
+
+-- Filtrar Tipos de Quejas de Alto Volumen
+SELECT *
+FROM complains
+HAVING COMPLAINT_TYPE LIKE 'Noise%';
+
+-- Comparación de Distritos para un Tipo Específico de Queja
+SELECT BOROUGH, COUNT(*) AS Complains_about_Fireworks
+FROM complains
+WHERE COMPLAINT_TYPE LIKE 'Illegal Fireworks'
+GROUP BY BOROUGH
+ORDER BY Complains_about_Fireworks DESC
+
+4. **Filtrar Tipos de Quejas de Alto Volumen**
    - Utiliza la cláusula `HAVING` para filtrar tipos de quejas que tienen más de 1000 quejas registradas.
    - Muestra el tipo de queja y el recuento de quejas.
 
-4. **Comparación de Distritos para un Tipo Específico de Queja**
+5. **Comparación de Distritos para un Tipo Específico de Queja**
    - Elige un tipo particular de queja.
    - Compara el número de dichas quejas en cada distrito.
 
