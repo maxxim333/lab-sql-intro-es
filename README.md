@@ -23,7 +23,9 @@ Enlace del Conjunto de Datos: [Conjunto de Datos de Solicitudes de Servicio 311 
    - Utiliza la cláusula `GROUP BY` para agrupar los datos por distrito.
   
    Code:
-   USE DATABASE ironhack_database;
+   
+```sql   
+USE DATABASE ironhack_database;
 CREATE OR REPLACE SCHEMA ironhack_class;
 
 CREATE OR REPLACE STAGE my_stage;
@@ -56,6 +58,7 @@ FROM complains
 WHERE COMPLAINT_TYPE LIKE 'Illegal Fireworks'
 GROUP BY BOROUGH
 ORDER BY Complains_about_Fireworks DESC
+```
 
 4. **Filtrar Tipos de Quejas de Alto Volumen**
    - Utiliza la cláusula `HAVING` para filtrar tipos de quejas que tienen más de 1000 quejas registradas.
