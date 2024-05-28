@@ -18,12 +18,6 @@ Enlace del Conjunto de Datos: [Conjunto de Datos de Solicitudes de Servicio 311 
    - Consulta el conjunto de datos para encontrar los 5 tipos principales de quejas basados en el número de quejas registradas.
    - Utiliza `GROUP BY` para agrupar los datos por tipo de queja y `ORDER BY` para ordenar los resultados.
 
-2. **Analizar Quejas por Distrito**
-   - Calcula el número total de quejas para cada distrito.
-   - Utiliza la cláusula `GROUP BY` para agrupar los datos por distrito.
-  
-   Code:
-   
 ```sql   
 USE DATABASE ironhack_database;
 CREATE OR REPLACE SCHEMA ironhack_class;
@@ -40,18 +34,41 @@ SELECT COMPLAINT_TYPE, COUNT(*) AS total_complaints
 FROM complains
 GROUP BY COMPLAINT_TYPE
 ORDER BY total_complaints DESC;
+```
 
-
+2. **Analizar Quejas por Distrito**
+   - Calcula el número total de quejas para cada distrito.
+   - Utiliza la cláusula `GROUP BY` para agrupar los datos por distrito.
+  
+   Code:
+   
+```sql   
 -- Analizar Quejas por Distrito
 SELECT BOROUGH, COUNT(*) AS How_Many FROM complains
 GROUP BY BOROUGH
 ORDER BY How_Many DESC;
+```
 
+
+
+
+
+4. **Filtrar Tipos de Quejas de Alto Volumen**
+   - Utiliza la cláusula `HAVING` para filtrar tipos de quejas que tienen más de 1000 quejas registradas.
+   - Muestra el tipo de queja y el recuento de quejas.
+
+```sql  
 -- Filtrar Tipos de Quejas de Alto Volumen
 SELECT *
 FROM complains
 HAVING COMPLAINT_TYPE LIKE 'Noise%';
+```
 
+5. **Comparación de Distritos para un Tipo Específico de Queja**
+   - Elige un tipo particular de queja.
+   - Compara el número de dichas quejas en cada distrito.
+
+```sql
 -- Comparación de Distritos para un Tipo Específico de Queja
 SELECT BOROUGH, COUNT(*) AS Complains_about_Fireworks
 FROM complains
@@ -59,14 +76,6 @@ WHERE COMPLAINT_TYPE LIKE 'Illegal Fireworks'
 GROUP BY BOROUGH
 ORDER BY Complains_about_Fireworks DESC
 ```
-
-4. **Filtrar Tipos de Quejas de Alto Volumen**
-   - Utiliza la cláusula `HAVING` para filtrar tipos de quejas que tienen más de 1000 quejas registradas.
-   - Muestra el tipo de queja y el recuento de quejas.
-
-5. **Comparación de Distritos para un Tipo Específico de Queja**
-   - Elige un tipo particular de queja.
-   - Compara el número de dichas quejas en cada distrito.
 
 ## Entregables
 
